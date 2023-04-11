@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Counter</title>
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+	<link rel="stylesheet" type="text/css" href="static/basic.css">
+</head>
+<body>
+	<h1 class="counter"style="text-align:center">{{ count }}</h1>
+	<form method="POST">
+		<button class="button" id="count-btn" type="button">Click Me!</button>
+	</form>
+	<br/><br/>
+	<form method="POST" action="{{ url_for('reset_count') }}">
+		<button class="button" type="submit">Reset</button>
+	</form>
+	<br/><br/>
+	<form method="GET" action="/">
+		<button class="button" type="submit">Go Back</button>
+	</form>
+	<script>
+		$(document).ready(function(){
+			$('#count-btn').click(function(){
+				$.post('/count', function(data){
+					$('h1').text(data);
+				});
+			});
+		});
+	</script>
+</body>
+</html>
